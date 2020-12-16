@@ -7,4 +7,8 @@ public class Device {
 
     /// Enables / disables logging output to both *Xcode's Console* and the macOS *Console app*. `true` by default.
     internal var isLoggingEnabled: Bool = true
+
+    // MARK: - Lifecycle
+
+    public init() {}
 }
