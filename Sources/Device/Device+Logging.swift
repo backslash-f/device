@@ -6,6 +6,7 @@ import AppLogger
 /// Refer to: https://developer.apple.com/documentation/os/logging
 public enum DeviceLoggingCategory: String {
     case type = "Device_Type"
+    case os = "Device_OS"
 }
 
 // MARK: - Interface

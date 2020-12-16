@@ -9,9 +9,10 @@ Retrieves information about a host device, such as its **`type`** (*iPhone, iPad
 
 ## Usage Examples
 
-### Device Type
+### Device's Type
 ```swift
-switch Device.type() {
+let device = Device()
+switch device.type() {
 case .iPhone:
     // Do iPhone stuff
 case .iPad:
@@ -29,11 +30,31 @@ case .unknow:
 }
 ```
 
+### Device's Operating System
+```swift
+let device = Device()
+let os = device.os()
+
+// E.g. running in an iOS device.
+let os = device.os()
+if os.major >= 14 {
+    // Do iOS 14 stuff
+}
+
+// E.g. running in a macOS device.
+if os.major == 11 && os.minor >= 0 {
+    // Do macOS 11.0 stuff
+}
+
+// Notice: for any platform, ".minor", ".patch" and ".description" are also available.
+```
+
 ## Available APIs
 API | Description
 --- | -----------
 `disableLogging()` | Disables logging output.
 `enableLogging()` | Enables logging output via [AppLogger](https://github.com/backslash-f/applogger).
+`os()` | Returns the operating system version based on `-[NSProcessInfo operatingSystemVersionString]` and `-[NSProcessInfo operatingSystemVersion]`.
 `type()` | Returns the type of the device based on the result of the `os()` and `targetEnvironment()` functions.
 
 ## Integration

@@ -23,7 +23,7 @@ public extension Device {
     ///
     /// There's also [a great NSHipster post](https://nshipster.com/swift-system-version-checking/) regarding this
     /// subject.
-    static func type() -> DeviceType {
+    func type() -> DeviceType {
         let deviceType: DeviceType
         #if os(tvOS)
             deviceType = .tv
@@ -40,6 +40,7 @@ public extension Device {
         #else
             deviceType = .unknown
         #endif
+        log(information: "Device type: \(deviceType)", category: .type)
         return deviceType
     }
 }

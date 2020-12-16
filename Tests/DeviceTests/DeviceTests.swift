@@ -7,8 +7,9 @@ final class DeviceTests: XCTestCase {
         XCTAssertTrue(Device().isLoggingEnabled)
     }
 
-    func testRetrieveOSDeviceType() {
-        switch Device.type() {
+    func testRetrieveDeviceType() {
+        let device = Device()
+        switch device.type() {
         case .mac(isCatalyst: false), .unknow:
             XCTAssert(true)
         default:
@@ -16,8 +17,17 @@ final class DeviceTests: XCTestCase {
         }
     }
 
+    func testRetrieveDeviceOS() {
+        let device = Device()
+        let osVersion = device.os()
+        XCTAssertFalse(osVersion.description.isEmpty, "The description is empty.")
+        XCTAssertTrue(osVersion.minor >= 0, "The minor version isn't equal or greater than zero.")
+        XCTAssertTrue(osVersion.patch >= 0, "The patchVersion version isn't equal or greater than zero.")
+    }
+
     static var allTests = [
-        ("testRetrieveOSDeviceType", testRetrieveOSDeviceType),
-        ("testIsLoggingEnabledByDefault", testIsLoggingEnabledByDefault)
+        ("testIsLoggingEnabledByDefault", testIsLoggingEnabledByDefault),
+        ("testRetrieveDeviceType", testRetrieveDeviceType),
+        ("testRetrieveDeviceOS", testRetrieveDeviceOS)
     ]
 }
