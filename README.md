@@ -9,6 +9,49 @@ Retrieves information about a host device, such as its **`type`** (*iPhone, iPad
 
 ## Usage Examples
 
+### Device's Orientation
+(Available only in **iOS** and **Mac Catalyst**)
+```swift
+let device = Device()
+
+// At any time:
+let currentOrientation = device.orientation
+
+// Observe orientation changes:
+var cancellables = Set<AnyCancellable>()
+device.$orientation
+    .sink { orientation in
+        switch orientation {
+        case .portrait:
+            // Do portrait stuff
+        case .landscapeRight:
+            // Do landscape stuff
+        default:
+            // Handle .faceDown, .faceUp, .landscapeLeft, .portraitUpsideDown, .unknown, etc
+        }
+    }
+    .store(in: &cancellables)
+```
+
+### Device's Operating System
+```swift
+let device = Device()
+let os = device.os()
+
+// E.g. running in an iOS device:
+let os = device.os()
+if os.major >= 14 {
+    // Do iOS 14 stuff
+}
+
+// E.g. running in a macOS device:
+if os.major == 11 && os.minor >= 0 {
+    // Do macOS 11.0 stuff
+}
+
+// Notice: for any platform, ".minor", ".patch" and ".description" are also available.
+```
+
 ### Device's Type
 ```swift
 let device = Device()
@@ -30,24 +73,10 @@ case .unknow:
 }
 ```
 
-### Device's Operating System
-```swift
-let device = Device()
-let os = device.os()
-
-// E.g. running in an iOS device.
-let os = device.os()
-if os.major >= 14 {
-    // Do iOS 14 stuff
-}
-
-// E.g. running in a macOS device.
-if os.major == 11 && os.minor >= 0 {
-    // Do macOS 11.0 stuff
-}
-
-// Notice: for any platform, ".minor", ".patch" and ".description" are also available.
-```
+## Available Properties
+Property | Description
+-------- | -----------
+`@Published var orientation: UIDeviceOrientation` | Subscribe to this variable to keep track of the orientation changes of the device. Available only in **iOS** and **Mac Catalyst**, as it relies on the [`orientationDidChangeNotification`](https://developer.apple.com/documentation/uikit/uidevice/1620025-orientationdidchangenotification) notification.
 
 ## Available APIs
 API | Description

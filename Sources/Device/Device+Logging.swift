@@ -1,12 +1,13 @@
-import Foundation
+import SwiftUI
 import AppLogger
 
 /// `Device` logging categories to further distinguish the running parts of the package.
 ///
 /// Refer to: https://developer.apple.com/documentation/os/logging
 public enum DeviceLoggingCategory: String {
-    case type = "Device_Type"
-    case os = "Device_OS"
+    case type           = "Device_Type"
+    case notification   = "Device_Notification"
+    case os             = "Device_OS"
 }
 
 // MARK: - Interface
@@ -48,5 +49,10 @@ internal extension Device {
         let subsystem = "com.backslash-f.Device"
         let logger = AppLogger(subsystem: subsystem, category: category.rawValue)
         logger.log(information)
+    }
+
+    /// Logs the given `Notification` via `AppLogger`.
+    func log(notification: Notification) {
+        log(information: "Received notification: \(notification)", category: .notification)
     }
 }
