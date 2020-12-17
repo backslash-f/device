@@ -96,7 +96,7 @@ Use Xcode's [built-in support for SPM](https://developer.apple.com/documentation
 In your `Package.swift`, add `Device` as a dependency:
 ```swift
 dependencies: [
-  .package(url: "https://github.com/backslash-f/device", from: "0.1.0")
+  .package(url: "https://github.com/backslash-f/device", from: "1.0.0")
 ],
 ```
 
