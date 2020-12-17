@@ -76,7 +76,7 @@ case .unknow:
 ## Available Properties
 Property | Description
 -------- | -----------
-`@Published var orientation: UIDeviceOrientation` | Subscribe to this variable to keep track of the orientation changes of the device. Available only in **iOS** and **Mac Catalyst**, as it relies on the [`orientationDidChangeNotification`](https://developer.apple.com/documentation/uikit/uidevice/1620025-orientationdidchangenotification) notification.
+`@Published var orientation: UIDeviceOrientation` | Subscribe to this variable to keep track of the orientation changes of the device. Available only in **iOS** and **Mac Catalyst**, as it relies on the [`orientationDidChangeNotification`](https://developer.apple.com/documentation/uikit/uidevice/1620025-orientationdidchangenotification) notification and [`UIDeviceOrientation`](https://developer.apple.com/documentation/uikit/uideviceorientation) Enumeration.
 
 ## Available APIs
 API | Description
