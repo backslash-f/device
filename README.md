@@ -10,7 +10,7 @@ Retrieves information about a host device, such as its **`type`** (*iPhone, iPad
 ## Usage Examples
 
 ### Device's Orientation
-(Available only in **iOS** and **Mac Catalyst**)
+(Available in **iOS** and **Mac Catalyst**)
 ```swift
 let device = Device()
 
@@ -53,9 +53,10 @@ if os.major == 11 && os.minor >= 0 {
 ```
 
 ### Device's Screen Size
-(Available only in **iOS** and **Mac Catalyst**)
+(Available in **iOS**, **Mac Catalyst** and **tvOS**)
 ```swift
-print(Device.screenSize)
+let device = Device()
+let screenSize = device.screenSize
 ```
 
 ### Device's Type
@@ -83,7 +84,7 @@ case .unknow:
 Property | Description
 -------- | -----------
 `@Published var orientation: UIDeviceOrientation` | Subscribe to this variable to keep track of the orientation changes of the device. Available only in **iOS** and **Mac Catalyst**, as it relies on the [`orientationDidChangeNotification`](https://developer.apple.com/documentation/uikit/uidevice/1620025-orientationdidchangenotification) notification and the [`UIDeviceOrientation`](https://developer.apple.com/documentation/uikit/uideviceorientation) Enumeration.
-`public static var screenSize: CGRect` | Returns the bounds of the device's internal screen in points.
+`public static var screenSize: CGRect` | Returns the device's screen size in **points**.
 
 ## Available APIs
 API | Description
