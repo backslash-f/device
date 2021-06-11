@@ -11,6 +11,7 @@ public class Device {
     @Published public var orientation: UIDeviceOrientation = UIDevice.current.orientation
     #endif
 
+    #if os(iOS) || targetEnvironment(macCatalyst) || os(tvOS)
     /// Returns the device's screen size in **points**.
     ///
     /// From Apple's documentation:
@@ -22,10 +23,9 @@ public class Device {
     /// - `tvOS:` This rectangle is based on the device in a portrait-up orientation. This value does not change as
     /// the device rotates.
     public var screenSize: CGRect {
-        #if os(iOS) || targetEnvironment(macCatalyst) || os(tvOS)
         UIScreen.main.bounds
-        #endif
     }
+    #endif
 
     // MARK: Internal Properties
 
