@@ -11,6 +11,13 @@ public class Device {
     @Published public var orientation: UIDeviceOrientation = UIDevice.current.orientation
     #endif
 
+    #if os(iOS) || targetEnvironment(macCatalyst)
+    /// Returns the bounds of the device's internal screen in points.
+    public static var screenSize: CGRect {
+        UIScreen.main.bounds
+    }
+    #endif
+
     // MARK: Internal Properties
 
     /// Enables / disables logging output to both *Xcode's Console* and the macOS *Console app*. `true` by default.
